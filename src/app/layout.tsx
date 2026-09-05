@@ -6,19 +6,18 @@ const generalSans = localFont({
   src: [{ path: "../../public/fonts/GeneralSans-400.woff2", weight: "400", style: "normal" }],
   variable: "--font-general-sans",
   display: "swap",
-  preload: true,
+  preload: false,
   fallback: ["system-ui", "-apple-system", "Segoe UI", "sans-serif"],
 });
 
 const fraunces = localFont({
   src: [
-    { path: "../../public/fonts/Fraunces-400.woff2", weight: "400", style: "normal" },
     { path: "../../public/fonts/Fraunces-600.woff2", weight: "600", style: "normal" },
     { path: "../../public/fonts/Fraunces-700.woff2", weight: "700", style: "normal" },
   ],
   variable: "--font-fraunces",
   display: "swap",
-  preload: true,
+  preload: false,
   fallback: ["Georgia", "Times New Roman", "serif"],
 });
 

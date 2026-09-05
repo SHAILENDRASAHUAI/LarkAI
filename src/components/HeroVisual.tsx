@@ -27,6 +27,16 @@ function canUseDesktop3D() {
   }
 }
 
+function deferDesktopSceneLoad(callback: () => void) {
+  if ("requestIdleCallback" in window) {
+    const idleId = window.requestIdleCallback(callback, { timeout: 1600 });
+    return () => window.cancelIdleCallback(idleId);
+  }
+
+  const timeoutId = setTimeout(callback, 900);
+  return () => clearTimeout(timeoutId);
+}
+
 export function StaticHeroArt() {
   return (
     <div className="hero-fallback" aria-hidden="true">
@@ -39,13 +49,28 @@ export function HeroVisual() {
   const [showDesktop3D, setShowDesktop3D] = useState(false);
 
   useEffect(() => {
-    const evaluate = () => setShowDesktop3D(canUseDesktop3D());
+    let cleanupLoad = () => {};
+
+    const evaluate = () => {
+      if (!canUseDesktop3D()) {
+        cleanupLoad();
+        setShowDesktop3D(false);
+        return;
+      }
+
+      cleanupLoad();
+      cleanupLoad = deferDesktopSceneLoad(() => setShowDesktop3D(true));
+    };
+
     evaluate();
 
     const media = window.matchMedia("(min-width: 1024px)");
     media.addEventListener("change", evaluate);
 
-    return () => media.removeEventListener("change", evaluate);
+    return () => {
+      cleanupLoad();
+      media.removeEventListener("change", evaluate);
+    };
   }, []);
 
   if (!showDesktop3D) {
