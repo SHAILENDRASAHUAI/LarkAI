@@ -1,0 +1,13 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="dawn" x1="0" y1="0" x2="1200" y2="630" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#1a2846"/>
+      <stop offset="0.58" stop-color="#4f729e"/>
+      <stop offset="1" stop-color="#f4d18e"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#dawn)"/>
+  <path d="M260 390L412 188L556 296L390 474L260 390Z" fill="#111E36" fill-opacity="0.9"/>
+  <path d="M548 285L640 252L572 322L548 285Z" fill="#111E36" fill-opacity="0.9"/>
+  <text x="690" y="308" fill="#F7EFD9" font-family="Arial, sans-serif" font-size="92" font-weight="700">LarkAI</text>
+</svg>
